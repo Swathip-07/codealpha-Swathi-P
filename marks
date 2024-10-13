@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class StudentGradeTracker {
+    public static void main(String[] args) {
+        ArrayList<Double> grades = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter grades for students. Type '-1' to finish.");
+        while (true) {
+            System.out.print("Enter a grade: ");
+            double grade = scanner.nextDouble();
+            if (grade == -1) {
+                break; 
+            }
+            grades.add(grade);
+        }
+        if (grades.isEmpty()) {
+            System.out.println("No grades entered.");
+        } else {
+            double average = calculateAverage(grades);
+            double highest = findHighest(grades);
+            double lowest = findLowest(grades);
+            System.out.println("Average grade: " + average);
+            System.out.println("Highest grade: " + highest);
+            System.out.println("Lowest grade: " + lowest);
+        }
+        scanner.close();
+    }
+    public static double calculateAverage(ArrayList<Double> grades) {
+        double sum = 0;
+        for (double grade : grades) {
+            sum += grade;
+        }
+        return sum / grades.size();
+    }
+    public static double findHighest(ArrayList<Double> grades) {
+        double highest = grades.get(0);
+        for (double grade : grades) {
+            if (grade > highest) {
+                highest = grade;
+            }
+        }
+        return highest;
+    }
+    public static double findLowest(ArrayList<Double> grades) {
+        double lowest = grades.get(0);
+        for (double grade : grades) {
+            if (grade < lowest) {
+                lowest = grade;
+            }
+        }
+        return lowest;
+    }
+}
